@@ -21,7 +21,5 @@ def fit(x_train, y_train, alpha, epsilion, method="GD"):
 def reg_fit(train, alpha, epsilion, method="L2GD", lamdas=[]):
     """
     """
-
     module = RegGradDesc
-
     return module.run(train, function=f, error=error, alpha=alpha, epsilion=epsilion, reg_type=method, lamdas=lamdas)

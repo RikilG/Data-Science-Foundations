@@ -4,7 +4,7 @@ This module implements solving normal equations
 
 import numpy as np
 
-def run(x_train, y_train, f, error, alpha, epsilion=1E-9):
+def run(x_train, y_train, function, error, alpha, epsilion=1E-9):
 
     print("Solving Normal Equations...")
     # alpha not used in normal eqns

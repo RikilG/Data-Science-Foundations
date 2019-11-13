@@ -6,11 +6,11 @@ import numpy as np
 f = None
 
 # gradient function
-def grad_f(w: np.array, x: np.array, y: np.array) -> int:
+def grad_f(w: np.array, x: np.array, y: np.array, alpha: float) -> int:
     res = (y - f(w, x))
-    w_grad = np.arange(w.shape[0])
+    w_grad = np.arange(w.shape[0], dtype=float)
     for i in range(w.shape[0]):
-        temp  = -1*res*x[:, i].reshape(x.shape[0],1)
+        temp  = -1*alpha*res*x[:, i].reshape(x.shape[0],1)
         w_grad[i] = np.sum(temp)
 
     return w_grad
@@ -22,6 +22,7 @@ def run(x_train, y_train, function, error, alpha, epsilion=1E-9):
     f = function
     print(f"Starting Gradient Descent with alpha={alpha}, epsilion={epsilion}\n")
     w       = np.ones(x_train.shape[1]+1)
+    # w = np.array([25.04642578, -19.16263639, -81.18066261, 262.73539401, -176.00733738, 235.932232, -211.82925832, 52.56155933, 173.047545, -267.83502714])
     x_train.insert(0, "Const", np.ones(x_train.shape[0]))
     x_train = np.array(x_train)
     y_train = np.array(y_train)
@@ -30,7 +31,8 @@ def run(x_train, y_train, function, error, alpha, epsilion=1E-9):
     prev_error = 0
     while iterations>0:
         # print(prev_error)
-        w = w - (alpha*grad_f(w, x_train, y_train))
+        g = grad_f(w, x_train, y_train, alpha) # alpha multiplied inside
+        w = w - g
         new_error = error(w, x_train, y_train)
         if abs(new_error-prev_error) < epsilion:
             break
