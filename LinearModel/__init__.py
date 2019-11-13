@@ -18,14 +18,10 @@ def fit(x_train, y_train, alpha, epsilion, method="GD"):
     return w
 
 
-def reg_fit(train, alpha, epsilion, method="L2GD"):
+def reg_fit(train, alpha, epsilion, method="L2GD", lamdas=[]):
     """
     """
 
-    module = L2GradDesc
+    module = RegGradDesc
 
-    if method=="L1GD": module=L1GradDesc
-    elif method=="L2GD": module=L2GradDesc
-
-    w = module.run(train, function=f, error=error, alpha=alpha, epsilion=epsilion, reg_type=method)
-    return w
+    return module.run(train, function=f, error=error, alpha=alpha, epsilion=epsilion, reg_type=method, lamdas=lamdas)

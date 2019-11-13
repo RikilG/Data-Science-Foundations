@@ -5,8 +5,9 @@ def test(w, x_test, y_test):
     x_test = np.array(x_test)
     y_test = np.array(y_test)
     err = error(w, x_test, y_test)
-    print(f"Testing Data:\n MSE: {err}, \tRMSE: {err**0.5}")
+    # print(f"Testing Data:\n MSE: {err}, \tRMSE: {err**0.5}")
     # print(f"Weights: {w}")
+    return err
 
 # prediction function
 def f(w: np.array, x: np.array) -> np.array:

@@ -1,7 +1,7 @@
-from Optimizers import StdGradDesc
 from LinearModel.LinearModelStats import test
 import DataUtils
 import numpy as np
+from tqdm import tqdm
 
 f = None
 
@@ -25,7 +25,7 @@ def grad_desc(x_train, y_train, error, alpha, epsilion, lamda, reg_type):
     prev_error = 0
     while iterations>0:
         # print(prev_error)
-        w = w - (alpha*grad_f(w, x_train, y_train, lamda))
+        w = w - (alpha*grad_f(w, x_train, y_train, lamda, reg_type))
         new_error = error(w, x_train, y_train)
         if abs(new_error-prev_error) < epsilion:
             break
@@ -37,7 +37,7 @@ def grad_desc(x_train, y_train, error, alpha, epsilion, lamda, reg_type):
     return w
 
 
-def run(data, function, error, alpha, epsilion=1e-9, reg_type="L2GD"):
+def run(data, function, error, alpha, epsilion=1e-9, reg_type="L2GD", lamdas=[]):
     global f
     f = function
     train, validate = DataUtils.data_split(data, split_at=0.8)\
@@ -51,12 +51,18 @@ def run(data, function, error, alpha, epsilion=1e-9, reg_type="L2GD"):
     x_train = np.array(x_train)
     y_train = np.array(y_train)
 
-    # lamdas = np.arange(0,1,0.1) # values b/w 0 and 1 stepped by 0.1
-    lamdas = [i for i in range(88,100,1)]
+    if len(lamdas) == 0:
+        # lamdas = np.arange(0,1,0.1) # values b/w 0 and 1 stepped by 0.1
+        lamdas = [i for i in range(-2000,2000,200)]
 
-    for lamda in lamdas:
-        print(f"\n>>>Lamda: {lamda}")
+    val_err = list()
+    train_err = list()
+    w_list = list()
+    for lamda in tqdm(lamdas):
+        # print(f"\n>>>Lamda: {lamda}")
         w = grad_desc(x_train, y_train, error, alpha, epsilion, lamda, reg_type)
-        test(w, x_val, y_val)
+        w_list.append(w)
+        val_err.append( test(w, x_val, y_val) )
+        train_err.append( error(w, x_train, y_train) )
 
-    return w
+    return w_list, lamdas, val_err, train_err
