@@ -1,4 +1,3 @@
-import LinearModel
 import PolynomialModel
 import DataUtils
 
@@ -28,8 +27,6 @@ x_train.insert(0, "Const", np.ones(x_train.shape[0]))
 # print(f"x_train dimensions: {x_train.shape}")
 
 st_time = time()
-# w       = LinearModel.fit(x_train, y_train, alpha=3.8e-6, epsilion=1e-9, method=method)
-# w_list, lamdas, val_errs, train_errs = LinearModel.reg_fit(train, alpha=4e-6, epsilion=1e-9, method=method)
 
 print(f"Using polynomial of degree: {degree}")
 # w       = PolynomialModel.fit(x_train, y_train, alpha=2.98e-6, epsilion=1e-4, method=method)
@@ -37,7 +34,7 @@ w_list, lamdas, val_errs, train_errs = PolynomialModel.reg_fit(train, alpha=7e-7
 
 test_errs = list()
 for w in w_list:
-    test_errs.append( LinearModel.test(w, x_test, y_test) )
+    test_errs.append( PolynomialModel.test(w, x_test, y_test) )
 plt.title(f'Error w.r.t lambda - degree: {degree}, method: {method}')
 plt.ylabel('Error')
 plt.xlabel('Lambda')
@@ -53,12 +50,12 @@ print("\nSelected Reg param: ", lamdas[min_index])
 
 print(f"\nExecution Time : {time()-st_time}")
 print(w)
-print('Train Error(MSE):\t', LinearModel.error(w, x_train.values, y_train.values))
-print('Test Error(MSE):\t', LinearModel.test(w, x_test, y_test))
-print('Train Error(RMSE):\t', LinearModel.error(w, x_train.values, y_train.values)**0.5)
-print('Test Error(RMSE):\t', LinearModel.test(w, x_test, y_test)**0.5)
-print('Train Error(R2):\t', LinearModel.r2_error(w, x_train, y_train))
-print('Test Error(R2):\t\t', LinearModel.r2_error(w, x_test, y_test))
+print('Train Error(MSE):\t', PolynomialModel.error(w, x_train.values, y_train.values))
+print('Test Error(MSE):\t', PolynomialModel.test(w, x_test, y_test))
+print('Train Error(RMSE):\t', PolynomialModel.error(w, x_train.values, y_train.values)**0.5)
+print('Test Error(RMSE):\t', PolynomialModel.test(w, x_test, y_test)**0.5)
+print('Train Error(R2):\t', PolynomialModel.r2_error(w, x_train, y_train))
+print('Test Error(R2):\t\t', PolynomialModel.r2_error(w, x_test, y_test))
 
 
 # degree1: L1alpha = 4.5e-6       L2alpha = 6e-7

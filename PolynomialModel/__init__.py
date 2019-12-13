@@ -1,7 +1,7 @@
 from Optimizers import StdGradDesc
 from Optimizers import NormEqns
 from Optimizers import RegGradDesc
-from PolynomialModel.ModelStats import f, error, test
+from PolynomialModel.ModelStats import f, error, test, r2_error
 
 
 def transform_dataset(data, degree=2):
