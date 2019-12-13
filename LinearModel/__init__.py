@@ -2,7 +2,7 @@ from Optimizers import StdGradDesc
 from Optimizers import StocasticGradDesc
 from Optimizers import NormEqns
 from Optimizers import RegGradDesc
-from LinearModel.LinearModelStats import f, error, test
+from LinearModel.LinearModelStats import f, error, test, r2_error
 
 
 def fit(x_train, y_train, alpha, epsilion, method="GD"):

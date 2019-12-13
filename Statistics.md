@@ -30,7 +30,7 @@ w = np.array([605.14287044, 4.21484986, -10.92459524])
 stocastic grad descent normalized min-max
 alpha = 1e-3
 w = np.array([ 21.005, 13.968, -13.882])
-MSE: 336.4424602330667,      RMSE: 18.34236790147517     time: 7.7 sec
+MSE: 336.4424602330667,      RMSE: 18.34236790147517     time: 5.5 sec
 
 stocastic grad descent normalized normal
 alpha = 0.003
@@ -41,3 +41,55 @@ w = np.array([22.25783981, 2.78476251 -3.51462797])
 
 ## Assignment 2
 ### Normal Equations
+### Regularization
+Degree 1 :
+    L1 :
+        lambda      = -0.034492
+        Train MSE   = 337.54769356941176
+        Test MSE    = 337.2592732731232
+        tr r2 = 18.372295596237716
+        ts r2 = 18.36431757601515
+        Train R2    = 0.026113402495594906
+        Test R2     = 0.027366882336142928
+    L2 :
+        lambda      = -0.04311596
+        Train MSE   = 338.60227
+        Test MSE    = 338.13394
+        Train R2    = 0.0230707
+        Test R2     = 0.0248443
+
+Degree 6 :
+    L1 : 
+        lambda      = -0.03736
+        Train MSE   = 324.67932
+        Test MSE    = 324.9320
+        Train R2    = 0.06324
+        Test R2     = 0.06291
+    L2 :
+        lambda      = -0.0373671
+        Train MSE   = 326.58833
+        Test MSE    = 326.8099
+        Train R2    = 0.057733
+        Test R2     = 0.057502
+
+## Degree Analysis
+Degree : 1      Error(MSE) : 337       Error(R2) : 0.026
+Degree : 2      Error(MSE) :        Error(R2) : 
+Degree : 3      Error(MSE) :        Error(R2) : 
+Degree : 4      Error(MSE) :        Error(R2) : 
+Degree : 5      Error(MSE) :        Error(R2) : 
+Degree : 6      Error(MSE) :        Error(R2) : 
+Degree : 7      Error(MSE) :        Error(R2) : 
+Degree : 8      Error(MSE) :        Error(R2) : 
+Degree : 9      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 1      Error(MSE) :        Error(R2) : 
+Degree : 2      Error(MSE) :        Error(R2) : 

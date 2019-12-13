@@ -9,10 +9,10 @@ def transform_dataset(data, degree=2):
     """
 
     degree = int(degree)
-    if len(data.columns) == 2:
-        data.columns = ['x1', 'x2']
-    elif len(data.columns) == 3:
-        data.columns = ['Const', 'x1', 'x2']
+    if len(data.columns) == 3:
+        data.columns = ['x1', 'x2', 'y']
+    elif len(data.columns) == 4:
+        data.columns = ['Const', 'x1', 'x2', 'y']
     if degree==1: return data
 
     for d in range(2,degree+1):
@@ -33,8 +33,8 @@ def fit(x_train, y_train, alpha, epsilion, method="GD"):
     return w
 
 
-def reg_fit(train, alpha, epsilion, method="L2GD", lamdas=[]):
+def reg_fit(train, alpha, epsilion, method="L2GD", lamdas=[], degree=0):
     """
     """
     module = RegGradDesc
-    return module.run(train, function=f, error=error, alpha=alpha, epsilion=epsilion, reg_type=method, lamdas=lamdas)
+    return module.run(train, function=f, error=error, alpha=alpha, epsilion=epsilion, reg_type=method, lamdas=lamdas, degree=degree)

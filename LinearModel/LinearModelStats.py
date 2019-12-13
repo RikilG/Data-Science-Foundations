@@ -19,3 +19,13 @@ def f(w: np.array, x: np.array) -> np.array:
 def error(w: np.array, x: np.array, y: np.array) -> int:
     err = (y - f(w, x))**2
     return np.sum(err)/(err.shape[0])
+
+# r2 error
+def r2_error(w:np.array, x: np.array, y: np.array) -> int:
+    if type(x) is not np.ndarray:
+        x = x.values
+    if type(y) is not np.ndarray:
+        y = y.values
+    rss = np.sum( np.square( y - f(w, x) ) )
+    tss = np.sum( np.square( y - y.mean() ) )
+    return ( 1 - (rss/tss) )
